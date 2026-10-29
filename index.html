@@ -48,13 +48,36 @@
         <p>Our website is currently under construction. Check back soon!</p>
         
         <!-- Visitor Counter Widget -->
-        <div class="counter-box">
-            Page Views
-            <!-- Free dynamic hit counter service -->
-            <span class="count">
-                <img src="https://www.helperjava.com" alt="Visitor Count" style="vertical-align: middle;">
-            </span>
-        </div>
+        <!-- Visitor Counter Widget -->
+<div class="counter-box">
+    Page Views
+    <span class="count" id="visitor-count">0000</span>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // CONFIGURATION: Replace these with your actual details from app.counterapi.dev
+        const WORKSPACE = "hjava"; 
+        const COUNTER_NAME = "hjava-counter";
+
+        const endpoint = `https://counterapi.dev{WORKSPACE}/${COUNTER_NAME}/up`;
+
+        fetch(endpoint)
+            .then(response => response.json())
+            .then(responseObj => {
+                // CounterAPI V2 nesting structure places data inside responseObj.data.value
+                if (responseObj && responseObj.data && responseObj.data.value !== undefined) {
+                    const countElement = document.getElementById('visitor-count');
+                    countElement.innerText = String(responseObj.data.value).padStart(4, '0');
+                }
+            })
+            .catch(error => {
+                console.error('CounterAPI Error:', error);
+                document.getElementById('visitor-count').innerText = "----";
+            });
+    });
+</script>
+
     </div>
 
 </body>
