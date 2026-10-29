@@ -50,7 +50,6 @@
         <!-- Visitor Counter Widget -->
         <!-- Visitor Counter Widget -->
 <div class="counter-box">
-    Page Views
     <span class="count" id="visitor-count">0000</span>
 </div>
 
@@ -66,9 +65,9 @@
             .then(response => response.json())
             .then(responseObj => {
                 // CounterAPI V2 nesting structure places data inside responseObj.data.value
-                if (responseObj && responseObj.data && responseObj.data.value !== undefined) {
-                    const countElement = document.getElementById('up_count');
-                    countElement.innerText = String(responseObj.data.value).padStart(4, '0');
+                if (responseObj && responseObj.data && responseObj.data.up_count !== undefined) {
+                    const countElement = document.getElementById('visitor-count');
+                    countElement.innerText = String(responseObj.data.up_count).padStart(4, '0');
                 }
             })
             .catch(error => {
