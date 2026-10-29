@@ -67,7 +67,7 @@
             .then(responseObj => {
                 // CounterAPI V2 nesting structure places data inside responseObj.data.value
                 if (responseObj && responseObj.data && responseObj.data.value !== undefined) {
-                    const countElement = document.getElementById('visitor-count');
+                    const countElement = document.getElementById('up_count');
                     countElement.innerText = String(responseObj.data.value).padStart(4, '0');
                 }
             })
